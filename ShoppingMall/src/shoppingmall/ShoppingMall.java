@@ -1,5 +1,5 @@
 package shoppingmall;
-
+//test
 public class ShoppingMall {
 	public int i,j;
 	
