@@ -12,6 +12,7 @@
 <body>
 	<h2>Lab #9: Oracle-Tomcat Conjunction</h2>
 <%
+	//test
 	String serverIP = "localhost";
 	String strSID = "xe";
 	String portNum = "1521";
