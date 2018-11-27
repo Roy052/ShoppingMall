@@ -76,7 +76,7 @@ body{
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String dbName = "a";
+	String dbName = "team4";
 	String id = "root";
 	String pw = "Asdf1234";
 	
