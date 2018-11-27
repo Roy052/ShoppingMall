@@ -60,10 +60,8 @@ body{
 				</div>
 				<div class="span8">
 					<div class="account pull-right">
-						<ul class="user-menu">		
-							<li><a href="Account.jsp">My Account</a></li>
-							<li><a href="cart.jsp">Your Cart</a></li>					
-							<li><a href="UnloginMain.jsp">Logout</a></li>		
+						<ul class="user-menu">				
+							<li><a href="register.html">Register</a></li>		
 						</ul>
 					</div>
 				</div>
