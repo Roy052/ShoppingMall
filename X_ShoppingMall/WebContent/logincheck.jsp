@@ -15,7 +15,7 @@
 	ResultSet rs = null;
 	String dbName = "team4";
 	String id = "root";
-	String pw = "Asdf1234";
+	String pw = "password";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -40,11 +40,12 @@
 	rs = pstmt.executeQuery();
 	if(rs.next()){
 		System.out.println("User");
-		out.println("<jsp:forward page=" + '"' + "Main.jsp" + '"' + "></jsp:forward>");
+		pageContext.forward("Main.jsp");
 	}
-	else 
+	else {
 		System.out.println("not user");
-	
+		response.sendRedirect("register.html");
+	}
 	%>
 </body>
 </html>

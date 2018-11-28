@@ -48,7 +48,11 @@ body{
 <meta charset="UTF-8">
 <title>We Sell Future</title>
 </head>
-<body>		
+<body>
+	<%
+	if(request.getParameter("uname")==null)
+		response.sendRedirect("UnloginMain.jsp");
+	%>		
 		<div id="top-bar" class="container">
 			<div class="row">
 			<a href="Main.jsp"><img src="/logo.png" alt=""></a>
@@ -61,8 +65,8 @@ body{
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">		
-							<li><a href="Account.jsp">My Account</a></li>
-							<li><a href="cart.jsp">Your Cart</a></li>					
+							<li><a href="Account.jsp?uname=<%=request.getParameter("uname")%>">My Account</a></li>
+							<li><a href="cart.jsp?uname=<%=request.getParameter("uname")%>">Your Cart</a></li>					
 							<li><a href="UnloginMain.jsp">Logout</a></li>		
 						</ul>
 					</div>
@@ -78,7 +82,7 @@ body{
 	ResultSet rs = null;
 	String dbName = "team4";
 	String id = "root";
-	String pw = "Asdf1234";
+	String pw = "password";
 	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");

@@ -61,7 +61,8 @@ body{
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="register.html">Register</a></li>		
+							<li><a href="register.html">Register</a></li>
+							<li><a href="signup.html">sign up</a></li>		
 						</ul>
 					</div>
 				</div>
@@ -74,9 +75,9 @@ body{
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String dbName = "a";
+	String dbName = "team4";
 	String id = "root";
-	String pw = "Asdf1234";
+	String pw = "password";
 	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -92,7 +93,6 @@ body{
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
-	
 	
 	%>
 	
