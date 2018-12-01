@@ -46,6 +46,15 @@ body{
 	}
     </style>
 <meta charset="UTF-8">
+
+<script type = "text/javascript"></script>
+<script>
+temp = location.href.split("?");
+data= temp[1].split(":");
+ID = data[0];
+PW = data[1];
+document.write(ID + " " + PW);
+</script>
 <title>We Sell Future</title>
 </head>
 <body>
@@ -81,8 +90,8 @@ body{
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "team4";
-	String id = "root";
-	String pw = "password";
+	String id = "knu";
+	String pw = "comp322";
 	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");

@@ -14,8 +14,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "team4";
-	String id = "root";
-	String pw = "password";
+	String id = "knu";
+	String pw = "comp322";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
