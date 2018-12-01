@@ -4,47 +4,7 @@
 <%@ page language="java" import="java.text.*, java.sql.*, java.io.*" %>
 <html>
 <head>
-<style>
-body{
-        margin:0;
-    }
-    #top-bar{
-	background-color:#fff;
-	padding:10px;
-	margin: 20px auto -22px auto;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-#top-bar .user-menu {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-#top-bar .user-menu li {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
-	border-right: 1px solid #eee;
-	padding: 5px 12px;
-}
-#top-bar .user-menu li:last-child{
-	border-right:0;
-}
-#top-bar input{
-		*padding-right:0 !important;
-	}
-	.navbar-inner.main-menu{
-		border-bottom:0 !important;
-	}
-	section.homepage-slider{
-		display:none;
-	}
-	.account.pull-right{
-		width:100%;
-		text-align:center;
-	}
-    </style>
+ 	<link type="text/css" href="style.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>We Sell Future</title>
 </head>
@@ -61,7 +21,8 @@ body{
 				<div class="span8">
 					<div class="account pull-right">
 						<ul class="user-menu">				
-							<li><a href="register.html">Register</a></li>		
+							<li><a href="register.html">Register</a></li>
+							<li><a href="signup.html">sign up</a></li>		
 						</ul>
 					</div>
 				</div>
@@ -74,9 +35,17 @@ body{
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String dbName = "a";
-	String id = "root";
-	String pw = "Asdf1234";
+	String dbName = "team4";
+	String id = "knu";
+	String pw = "comp322";
+<<<<<<< HEAD
+	
+	String user_id ="";
+	user_id=(String)session.getAttribute("id");
+	if(!(user_id==null||user_id.equals("")))
+		response.sendRedirect("Main.jsp");
+=======
+>>>>>>> branch 'master' of https://github.com/Roy052/ShoppingMall
 	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -92,8 +61,6 @@ body{
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
-	
-	
 	%>
 	
 </body>

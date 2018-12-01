@@ -11,24 +11,17 @@
 			<a href="Main.jsp"><img src="/logo.png" alt=""></a>
 		</div>
 	</div>
-<form action="signup.jsp">
+<form action="changeinf.jsp">
   <div class="container">
   
   	<label for="name"><b>Your Name</b></label>
     <input type="text" placeholder="Enter Your name" name="name">
-    
-    <label for="uname"><b>ID</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-	
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
     
     <label for="address"><b>Address</b></label>
     <input type="text" placeholder="Enter Address" name="address">
     
     <label for="tel"><b>TEL</b></label>
     <input type="text" placeholder="Enter TEL" name="tel">
-    
     
     <label for="sex"><b>Sex</b></label>
     <select name = "sex">
@@ -38,12 +31,12 @@
 	</select><br>
     
     <label for="age"><b>Age</b></label>
-    <input type="number" placeholder="Enter Age" name="age">
+    <input type="number" placeholder="Enter Address" name="age">
     
     <label for="job"><b>Job</b></label>
-    <input type="text" placeholder="Enter Job" name="job">
+    <input type="text" placeholder="Enter Address" name="job">
     
-    <button type="submit">Login</button>
+    <button type="submit">Change</button>
   </div>
 
   <div class="container" style="background-color:#f1f1f1">

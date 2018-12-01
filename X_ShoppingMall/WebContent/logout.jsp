@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>logout</title>
 </head>
 <body>
-
+<%
+session.invalidate();
+%>
+<script>
+alert("You are logged out")
+location.href="UnloginMain.jsp";
+</script>
 </body>
 </html>

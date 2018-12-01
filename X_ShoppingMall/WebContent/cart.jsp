@@ -1,17 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page language="java" import="java.text.*, java.sql.*, java.io.*" %>
 <html>
 <head>
+ 	<link type="text/css" href="style2.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>UNMI cart</title>
+<title>MY ACCOUNT</title>
 </head>
 <body>
-<div id="top-bar" class="container">
-			<div class="row">
-			<a href="Main.jsp"><img src="/logo.png" alt=""></a>
-			</div>
-			</div>
-	UNMI's Cart
+	<div id="top-bar" class="container">
+		<div class="row">
+			<a href="Main.jsp?uname=<%=request.getParameter("uname")%>"><img src="/logo.png" alt=""></a>
+		</div>
+	</div>
+	<%
+	String url;
+	Connection conn=null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String dbName = "team4";
+	String id = "root";
+	String pw = "password";
+	url = "jdbc:mysql://localhost/" + dbName;
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection(url,id,pw);
+		if(conn==null)
+			System.out.println("logincheck연결 실패");
+		else
+			System.out.println("logincheck연결 성공");
+	}catch(ClassNotFoundException e){
+		e.printStackTrace();
+	}catch(SQLException se){
+		se.printStackTrace();
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}%>
+	<%
+	//select * from CUSTOMER,CART WHERE CUSTOMER.ID=CART.Customer_ID and CUSTOMER.ID='asdf';
+	String query = "SELECT * FROM CUSTOMER,CART WHERE" 
+		+ " ID='" + request.getParameter("uname") + "' AND CUSTOMER.ID=CART.Customer_ID";
+	System.out.println(query);
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	//System.out.println(rs.getString(1));
+	out.println("<table border=\"1\">");
+	ResultSetMetaData rsmd = rs.getMetaData();
+	int cnt = rsmd.getColumnCount();
+	
+	for(int i=1;i<=cnt;i++){
+		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
+	}
+	while(rs.next()){
+		out.println("<tr>");
+		out.println("<td>"+rs.getString(1)+"</td>");
+		out.println("<td>"+rs.getString(2)+"</td>");
+		out.println("<td>"+rs.getString(3)+"</td>");
+		out.println("<td>"+rs.getString(4)+"</td>");
+		out.println("<td>"+rs.getString(5)+"</td>");
+		out.println("<td>"+rs.getString(6)+"</td>");
+		out.println("<td>"+rs.getString(7)+"</td>");
+		out.println("<td>"+rs.getString(8)+"</td>");
+		out.println("</tr>");
+	}
+	out.println("</table>");
+	
+	pstmt.close();
+	%>
+	
+	<button type="button" onclick="location.href='changeinf.jsp' ">Change Information</button>
 </body>
 </html>

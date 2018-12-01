@@ -14,8 +14,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "team4";
-	String id = "root";
-	String pw = "Asdf1234";
+	String id = "knu";
+	String pw = "comp322";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -39,12 +39,14 @@
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
 	if(rs.next()){
+		session.setAttribute("id",request.getParameter("uname"));
 		System.out.println("User");
-		out.println("<jsp:forward page=" + '"' + "Main.jsp" + '"' + "></jsp:forward>");
+		pageContext.forward("Main.jsp");
 	}
-	else 
+	else {
 		System.out.println("not user");
-	
+		response.sendRedirect("register.html");
+	}
 	%>
 </body>
 </html>

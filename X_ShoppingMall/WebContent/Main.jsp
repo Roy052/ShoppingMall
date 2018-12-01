@@ -4,51 +4,31 @@
 <%@ page language="java" import="java.text.*, java.sql.*, java.io.*" %>
 <html>
 <head>
-<style>
-body{
-        margin:0;
-    }
-    #top-bar{
-	background-color:#fff;
-	padding:10px;
-	margin: 20px auto -22px auto;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-#top-bar .user-menu {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-#top-bar .user-menu li {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
-	border-right: 1px solid #eee;
-	padding: 5px 12px;
-}
-#top-bar .user-menu li:last-child{
-	border-right:0;
-}
-#top-bar input{
-		*padding-right:0 !important;
-	}
-	.navbar-inner.main-menu{
-		border-bottom:0 !important;
-	}
-	section.homepage-slider{
-		display:none;
-	}
-	.account.pull-right{
-		width:100%;
-		text-align:center;
-	}
-    </style>
+ 	<link type="text/css" href="style.css" rel="stylesheet" />
 <meta charset="UTF-8">
+
+<script type = "text/javascript"></script>
+<<<<<<< HEAD
+=======
+<script>
+temp = location.href.split("?");
+data= temp[1].split(":");
+ID = data[0];
+PW = data[1];
+document.write(ID + " " + PW);
+</script>
+>>>>>>> branch 'master' of https://github.com/Roy052/ShoppingMall
 <title>We Sell Future</title>
 </head>
-<body>		
+<body>
+	<%
+	String user_id ="";
+	user_id=(String)session.getAttribute("id");
+	if(user_id==null||user_id.equals(""))
+		response.sendRedirect("UnloginMain.jsp");
+	else
+		out.println("user id : "+user_id);
+	%>		
 		<div id="top-bar" class="container">
 			<div class="row">
 			<a href="Main.jsp"><img src="/logo.png" alt=""></a>
@@ -63,7 +43,7 @@ body{
 						<ul class="user-menu">		
 							<li><a href="Account.jsp">My Account</a></li>
 							<li><a href="cart.jsp">Your Cart</a></li>					
-							<li><a href="UnloginMain.jsp">Logout</a></li>		
+							<li><a href="logout.jsp">Logout</a></li>		
 						</ul>
 					</div>
 				</div>
@@ -77,9 +57,12 @@ body{
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "team4";
-	String id = "root";
-	String pw = "Asdf1234";
+	String id = "knu";
+	String pw = "comp322";
+<<<<<<< HEAD
+=======
 	
+>>>>>>> branch 'master' of https://github.com/Roy052/ShoppingMall
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName,id,pw);
