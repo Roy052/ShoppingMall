@@ -38,14 +38,11 @@
 	String dbName = "team4";
 	String id = "knu";
 	String pw = "comp322";
-<<<<<<< HEAD
 	
 	String user_id ="";
 	user_id=(String)session.getAttribute("id");
 	if(!(user_id==null||user_id.equals("")))
 		response.sendRedirect("Main.jsp");
-=======
->>>>>>> branch 'master' of https://github.com/Roy052/ShoppingMall
 	
 	try{
 		Class.forName("com.mysql.jdbc.Driver");

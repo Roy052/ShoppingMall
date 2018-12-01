@@ -8,16 +8,6 @@
 <meta charset="UTF-8">
 
 <script type = "text/javascript"></script>
-<<<<<<< HEAD
-=======
-<script>
-temp = location.href.split("?");
-data= temp[1].split(":");
-ID = data[0];
-PW = data[1];
-document.write(ID + " " + PW);
-</script>
->>>>>>> branch 'master' of https://github.com/Roy052/ShoppingMall
 <title>We Sell Future</title>
 </head>
 <body>
@@ -59,10 +49,6 @@ document.write(ID + " " + PW);
 	String dbName = "team4";
 	String id = "knu";
 	String pw = "comp322";
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/Roy052/ShoppingMall
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName,id,pw);
