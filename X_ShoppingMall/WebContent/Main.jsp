@@ -48,6 +48,7 @@
 				$('#fruit').hover(
 						function() {
 							$(this).append($("<span> apple</span>"));
+							document.location.href="Account.jsp";
 						}, 
 						function() {
 							$(this).find("span:last").remove();
@@ -77,9 +78,9 @@
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String dbName = "team4";
-	String id = "root";
-	String pw = "password";
+	String dbName = "Team4_ShoppingMall";
+	String id = "knu";
+	String pw = "comp322";
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName,id,pw);

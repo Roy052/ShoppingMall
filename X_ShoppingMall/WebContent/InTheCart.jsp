@@ -26,9 +26,9 @@
 		response.sendRedirect("UnloginMain.jsp");
 	
 	int maxnum;
-	String dbName = "team4";
-	String id = "root";
-	String pw = "password";
+	String dbName = "Team4_ShoppingMall";
+	String id = "knu";
+	String pw = "comp322";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");

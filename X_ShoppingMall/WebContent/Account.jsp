@@ -18,9 +18,9 @@
 	Connection conn=null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String dbName = "team4";
-	String id = "root";
-	String pw = "password";
+	String dbName = "Team4_ShoppingMall";
+	String id = "knu";
+	String pw = "comp322";
 	String user_id="";
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
