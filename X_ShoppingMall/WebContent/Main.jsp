@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 
 <script type = "text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <title>We Sell Future</title>
 </head>
 <body>
@@ -37,7 +38,37 @@
 						</ul>
 					</div>
 				</div>
+			<div class="span8">
+				<ul class="cate-menu">
+					<li id='fruit'>Fruit/Nut</li>
+					<li id="vegetable">vegetable</li>
+					<li id="rice">rice</li>
+				</ul>
+				<script type="text/javascript">
+				$('#fruit').hover(
+						function() {
+							$(this).append($("<span> apple</span>"));
+						}, 
+						function() {
+							$(this).find("span:last").remove();
+						});
+				$('#vegetable').hover(
+						function() {
+							$(this).append($("<span> kiwi</span>"));
+						}, 
+						function() {
+							$(this).find("span:last").remove();
+						});
+				$('#rice').hover(
+						function() {
+							$(this).append($("<span> bean</span>"));
+						}, 
+						function() {
+							$(this).find("span:last").remove();
+						});
+				</script>
 			</div>
+		</div>
 		</div>
 				
 	<%
@@ -47,8 +78,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "team4";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName,id,pw);

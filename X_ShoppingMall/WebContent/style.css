@@ -25,6 +25,13 @@ body{
 #top-bar .user-menu li:last-child{
 	border-right:0;
 }
+#top-bar .cate-menu li{
+	display: inline-block;
+	*display: inline;
+	zoom: 1.5;
+	border-right: 1.5px solid #eee;
+	padding: 5px 12px;
+}
 #top-bar input{
 		*padding-right:0 !important;
 	} 

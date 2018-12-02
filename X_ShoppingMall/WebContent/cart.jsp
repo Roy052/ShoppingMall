@@ -69,6 +69,6 @@
 	pstmt.close();
 	%>
 	
-	<button type="button" onclick="location.href='changeinf.jsp' ">Change Information</button>
+	<button type="button" onclick="location.href='payment.jsp' ">Purchase of Goods</button>
 </body>
 </html>
