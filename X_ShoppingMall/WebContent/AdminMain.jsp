@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ page language="java" import="java.text.*, java.sql.*, java.io.*" %>
+<%@ page language="java" import="java.text.*, java.sql.*, java.io.*, java.time.LocalDateTime" %>
 <html>
 <head>
  	<link type="text/css" href="style2.css" rel="stylesheet" />
@@ -41,13 +41,13 @@
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}%>
-	<h4>Shopping Cart</h4>
+	<h4>Item Ordering</h4>
+	<button type="button" onclick="location.href='AdminOrder.jsp'">To Ordering Menu</button>
+	<h4>Out of Stock Items</h4>
 	<%
+	
 	//select * from CUSTOMER,CART WHERE CUSTOMER.ID=CART.Customer_ID and CUSTOMER.ID='asdf';
-	String query = "SELECT Item_Name, Price, ADD_CART.Ammount FROM CUSTOMER,CART,ADD_CART,ITEM WHERE" 
-		+ " CUSTOMER.ID='" + user_id + "' AND CART.Cart_num=ADD_CART.Cart_Num AND " 
-		+ "CUSTOMER.ID=ADD_CART.Customer_ID AND ADD_CART.Item_Num=ITEM.Item_Num";
-	int sum = 0;
+	String query = "SELECT Item_Name FROM ITEM WHERE ITEM.Stock=0";
 	
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
@@ -63,19 +63,66 @@
 	while(rs.next()){
 		out.println("<tr>");
 		out.println("<td>"+rs.getString(1)+"</td>");
-		out.println("<td>"+rs.getString(2)+"</td>");
-		out.println("<td>"+rs.getString(3)+"</td>");
 		out.println("</tr>");
-		sum += Integer.parseInt(rs.getString(2)) * Integer.parseInt(rs.getString(3));
 	}
 	out.println("</table>");
 	
-	out.println("<h4>");
-	out.println("Total Price : " + sum);
-	out.println("</h4>");
 	pstmt.close();
 	%>
+	<h4>Revenue</h4>
+	<h5>Total Revenue</h5>
+	<% 
+	LocalDateTime now = LocalDateTime.now();
+	//now.getMonthValue(), now.getDayOfMonth(),now.getYear()
 	
-	<button type="button" onclick="location.href='payment.jsp' ">Purchase of Goods</button>
+	query = "SELECT Price FROM BUYING";
+	int sum = 0;
+	
+	System.out.println(query);
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	//System.out.println(rs.getString(1));
+	while(rs.next()){
+		sum += Integer.parseInt(rs.getString(1));
+	}
+	out.println("<h5>");
+	out.println(sum);
+	out.println("</h5>");
+	%>
+	<h5>This Month's Revenue</h5>
+	<% 
+	query = "SELECT Price FROM BUYING WHERE YEAR(Buying_Date)=" + now.getYear()
+	+  " AND MONTH(Buying_Date)=" + now.getMonthValue();
+	sum = 0;
+	
+	System.out.println(query);
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	//System.out.println(rs.getString(1));
+	while(rs.next()){
+		sum += Integer.parseInt(rs.getString(1));
+	}
+	out.println("<h5>");
+	out.println(sum);
+	out.println("</h5>");
+	%>
+	<h5>Today's Revenue</h5>
+	<% 
+	query = "SELECT Price FROM BUYING WHERE YEAR(Buying_Date)=" + now.getYear()
+	+  " AND MONTH(Buying_Date)=" + now.getMonthValue() 
+	+ " AND DAY(Buying_Date)=" + now.getDayOfMonth();
+	sum = 0;
+	
+	System.out.println(query);
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	//System.out.println(rs.getString(1));
+	while(rs.next()){
+		sum += Integer.parseInt(rs.getString(1));
+	}
+	out.println("<h5>");
+	out.println(sum);
+	out.println("</h5>");
+	%>
 </body>
 </html>
