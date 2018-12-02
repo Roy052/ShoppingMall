@@ -31,10 +31,10 @@
 	</select><br>
     
     <label for="age"><b>Age</b></label>
-    <input type="number" placeholder="Enter Address" name="age">
+    <input type="number" placeholder="Enter Age" name="age">
     
     <label for="job"><b>Job</b></label>
-    <input type="text" placeholder="Enter Address" name="job">
+    <input type="text" placeholder="Enter Job" name="job">
     
     <button type="submit">Change</button>
   </div>

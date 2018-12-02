@@ -47,7 +47,7 @@
 	pstmt.setString(2,request.getParameter("address"));
 	pstmt.setString(3,request.getParameter("tel"));
 	pstmt.setString(4,request.getParameter("sex"));
-	if(request.getParameter("age").equals(null))
+	if(!request.getParameter("age").equals(null))
 		pstmt.setInt(5,Integer.parseInt(request.getParameter("age")));
 	else
 		pstmt.setInt(5,0);
@@ -55,7 +55,6 @@
 	pstmt.setString(7,user_id);
 	
 	try{
-	
 	int res= pstmt.executeUpdate();
 	System.out.println(res+" row updated.");
 	}catch(SQLException ex2) {
