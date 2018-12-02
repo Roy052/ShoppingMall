@@ -18,7 +18,7 @@
 	Connection conn=null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String dbName = "team4";
+	String dbName = "Team4_ShoppingMall";
 	String id = "knu";
 	String pw = "comp322";
 	String user_id="";
