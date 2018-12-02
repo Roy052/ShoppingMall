@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			<div class="span8">
-				<ul class="cate-menu">
+				<ul>
 					<li id='fruit'>Fruit/Nut</li>
 					<li id="vegetable">vegetable</li>
 					<li id="rice">rice</li>
@@ -47,24 +47,35 @@
 				<script type="text/javascript">
 				$('#fruit').hover(
 						function() {
-							$(this).append($("<span> apple</span>"));
-							document.location.href="Account.jsp";
+							$(this).append($("<span><a href='Main.jsp'> apple/bear  </a></span>"));
+							$(this).append($("<span><a href='Main.jsp'> persimmons  </a></span>"));
+							$(this).append($("<span><a href='Main.jsp'> kiwi/chamdari</a></span>"));
 						}, 
 						function() {
+							$(this).find("span:last").remove();
+							$(this).find("span:last").remove();
 							$(this).find("span:last").remove();
 						});
 				$('#vegetable').hover(
 						function() {
-							$(this).append($("<span> kiwi</span>"));
+							$(this).append($("<span>  boosting/spinach  </span>"));
+							$(this).append($("<span>  bean/pean_sprouts  </span>"));
+							$(this).append($("<span>  lettuce/cracker/ssam </span>"));
 						}, 
 						function() {
+							$(this).find("span:last").remove();
+							$(this).find("span:last").remove();
 							$(this).find("span:last").remove();
 						});
 				$('#rice').hover(
 						function() {
-							$(this).append($("<span> bean</span>"));
+							$(this).append($("<span>  bean/bori  </span>"));
+							$(this).append($("<span>  glutin_rice/rice/black  </span>"));
+							$(this).append($("<span>  millet</span>"));
 						}, 
 						function() {
+							$(this).find("span:last").remove();
+							$(this).find("span:last").remove();
 							$(this).find("span:last").remove();
 						});
 				</script>
