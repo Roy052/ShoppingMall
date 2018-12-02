@@ -22,6 +22,10 @@
 	String dbName = "Team4_ShoppingMall";
 	String id = "knu";
 	String pw = "comp322";
+	String user_id="";
+	user_id= (String)session.getAttribute("id");
+	if(user_id==null||user_id.equals(""))
+		response.sendRedirect("UnloginMain.jsp");
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -37,10 +41,12 @@
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}%>
+	<h4>Shopping Cart</h4>
 	<%
 	//select * from CUSTOMER,CART WHERE CUSTOMER.ID=CART.Customer_ID and CUSTOMER.ID='asdf';
-	String query = "SELECT Customer_ID, Delivery_Info, Ammount FROM CUSTOMER,CART WHERE" 
-		+ " ID='" + request.getParameter("uname") + "' AND CUSTOMER.ID=CART.Customer_ID";
+	String query = "SELECT Item_Name, Price, ADD_CART.Ammount FROM CUSTOMER,CART,ADD_CART,ITEM WHERE" 
+		+ " CUSTOMER.ID='" + user_id + "' AND CART.Cart_num=ADD_CART.Cart_Num AND " 
+		+ "CUSTOMER.ID=ADD_CART.Customer_ID AND ADD_CART.Item_Num=ITEM.Item_Num";
 	int sum = 0;
 	
 	System.out.println(query);
@@ -60,7 +66,7 @@
 		out.println("<td>"+rs.getString(2)+"</td>");
 		out.println("<td>"+rs.getString(3)+"</td>");
 		out.println("</tr>");
-		sum += Integer.parseInt(rs.getString(3));
+		sum += Integer.parseInt(rs.getString(2)) * Integer.parseInt(rs.getString(3));
 	}
 	out.println("</table>");
 	
