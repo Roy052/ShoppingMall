@@ -6,7 +6,7 @@
 <head>
  	<link type="text/css" href="style2.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>MY ACCOUNT</title>
+<title>UNMI : CART</title>
 </head>
 <body>
 	<div id="top-bar" class="container">
@@ -39,8 +39,10 @@
 	}%>
 	<%
 	//select * from CUSTOMER,CART WHERE CUSTOMER.ID=CART.Customer_ID and CUSTOMER.ID='asdf';
-	String query = "SELECT * FROM CUSTOMER,CART WHERE" 
+	String query = "SELECT Customer_ID, Delivery_Info, Ammount FROM CUSTOMER,CART WHERE" 
 		+ " ID='" + request.getParameter("uname") + "' AND CUSTOMER.ID=CART.Customer_ID";
+	int sum = 0;
+	
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
@@ -57,15 +59,13 @@
 		out.println("<td>"+rs.getString(1)+"</td>");
 		out.println("<td>"+rs.getString(2)+"</td>");
 		out.println("<td>"+rs.getString(3)+"</td>");
-		out.println("<td>"+rs.getString(4)+"</td>");
-		out.println("<td>"+rs.getString(5)+"</td>");
-		out.println("<td>"+rs.getString(6)+"</td>");
-		out.println("<td>"+rs.getString(7)+"</td>");
-		out.println("<td>"+rs.getString(8)+"</td>");
 		out.println("</tr>");
+		sum += Integer.parseInt(rs.getString(3));
 	}
 	out.println("</table>");
 	
+	out.println("<h4>");
+	out.println("Total Price : " + sum);
 	pstmt.close();
 	%>
 	

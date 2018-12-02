@@ -21,11 +21,6 @@
 	String dbName = "team4";
 	String id = "knu";
 	String pw = "comp322";
-	String user_id="";
-	user_id= (String)session.getAttribute("id");
-	if(user_id==null||user_id.equals(""))
-		response.sendRedirect("UnloginMain.jsp");
-	
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -42,8 +37,8 @@
 		ex.printStackTrace();
 	}
 	
-	String query = "SELECT * FROM CUSTOMER WHERE" 
-			+ " ID='" + user_id + "'";
+	String query = "SELECT * FROM ITEM WHERE" 
+			+ " Item_Name='" + request.getParameter("Item_Name") + "'";
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
@@ -61,7 +56,7 @@
 		out.println("</tr>");
 	}
 	out.println("</table>");
-	
+
 	%>
 	<button type="button" onclick="location.href='changeinf1.jsp'">Change Information</button>
 	<button type="button" onclick="location.href='changepwd.html'">Change Password</button>

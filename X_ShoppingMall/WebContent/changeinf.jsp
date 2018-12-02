@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>logincheck</title>
+<title>UNMI : Change Information</title>
 </head>
 <body>
 <%

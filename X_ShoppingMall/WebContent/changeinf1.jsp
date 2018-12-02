@@ -3,7 +3,7 @@
 <head>
  	<link type="text/css" href="style2.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>UNMI Register</title>
+<title>UNMI : Register</title>
 </head>
 <body>
 	<div id="top-bar" class="container">
