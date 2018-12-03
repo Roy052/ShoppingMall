@@ -47,9 +47,9 @@
 				<script type="text/javascript">
 				$('#fruit').hover(
 						function() {
-							$(this).append($("<span><a href='Main.jsp'> apple/bear  </a></span>"));
-							$(this).append($("<span><a href='Main.jsp'> persimmons  </a></span>"));
-							$(this).append($("<span><a href='Main.jsp'> kiwi/chamdari</a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=apple/bear'> apple/bear  </a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=persimmons'> persimmons  </a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=kiwi/chamdari'> kiwi/chamdari</a></span>"));
 						}, 
 						function() {
 							$(this).find("span:last").remove();
