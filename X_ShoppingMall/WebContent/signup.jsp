@@ -52,7 +52,12 @@
 	pstmt.setString(4,request.getParameter("address"));
 	pstmt.setString(5,request.getParameter("tel"));
 	pstmt.setString(6,request.getParameter("sex"));
-	pstmt.setString(7,request.getParameter("age"));
+	if(!(request.getParameter("age").equals(null)||request.getParameter("age").equals(""))){
+		pstmt.setInt(7,Integer.parseInt(request.getParameter("age")));
+	}
+	else{
+		pstmt.setInt(7,0);
+	}
 	pstmt.setString(8,request.getParameter("job"));
 	
 	try{
