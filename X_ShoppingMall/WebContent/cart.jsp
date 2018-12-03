@@ -65,6 +65,7 @@
 		out.println("<td>"+rs.getString(1)+"</td>");
 		out.println("<td>"+rs.getString(2)+"</td>");
 		out.println("<td>"+rs.getString(3)+"</td>");
+		out.println("<td><a href='DeletingAddCart.jsp?Item_Name=" + rs.getString(1) + "'>Delete</a></td>");
 		out.println("</tr>");
 		sum += Integer.parseInt(rs.getString(2)) * Integer.parseInt(rs.getString(3));
 	}

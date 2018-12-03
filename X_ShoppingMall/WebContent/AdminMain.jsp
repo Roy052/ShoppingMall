@@ -48,7 +48,7 @@
 	<%
 	
 	//select * from CUSTOMER,CART WHERE CUSTOMER.ID=CART.Customer_ID and CUSTOMER.ID='asdf';
-	String query = "SELECT Item_Name FROM ITEM WHERE ITEM.Stock=0";
+	String query = "SELECT Item_Num, Item_Name FROM ITEM WHERE ITEM.Stock=0";
 	
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
@@ -59,6 +59,7 @@
 	while(rs.next()){
 		out.println("<tr>");
 		out.println("<td>"+rs.getString(1)+"</td>");
+		out.println("<td>"+rs.getString(2)+"</td>");
 		out.println("</tr>");
 	}
 	out.println("</table>");

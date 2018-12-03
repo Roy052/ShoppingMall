@@ -17,6 +17,8 @@
 	user_id=(String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
 		response.sendRedirect("UnloginMain.jsp");
+	else if(user_id.equals("Admin"))
+		response.sendRedirect("AdminMain.jsp");
 	else
 		out.println("user id : "+user_id);
 	%>		

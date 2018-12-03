@@ -40,13 +40,21 @@
 	rs = pstmt.executeQuery();
 	if(rs.next()){
 		session.setAttribute("id",request.getParameter("uname"));
-		System.out.println("User");
-		pageContext.forward("Main.jsp");
+		if(request.getParameter("uname").equals("Admin")){
+			System.out.println("Admin");
+			response.sendRedirect("AdminMain.jsp");
+		}
+		else{
+			System.out.println("User");
+			pageContext.forward("Main.jsp");	
+		}
 	}
 	else {
 		System.out.println("not user");
 		response.sendRedirect("register.html");
 	}
+
 	%>
+
 </body>
 </html>
