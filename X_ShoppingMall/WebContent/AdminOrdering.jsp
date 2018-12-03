@@ -14,8 +14,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	String user_id="";
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
@@ -38,7 +38,7 @@
 	}
 	
 	//error detecting
-	if(Integer.parseInt(request.getParameter("ammount")) < 0){
+	if(Integer.parseInt(request.getParameter("Ammount")) < 0){
 		out.println("<script>");
 		out.println("alert('Ammount is negative number. Unacceptable condition.')");
 		out.println("location.href='AdminMain.jsp'");
@@ -57,7 +57,7 @@
 	String sql= "UPDATE ITEM SET Stock=? WHERE Item_Num=?";
 	pstmt=conn.prepareStatement(sql);
 	
-	pstmt.setString(1, Integer.toString(current_Stock + Integer.parseInt(request.getParameter("Stock"))));
+	pstmt.setString(1, Integer.toString(current_Stock + Integer.parseInt(request.getParameter("Ammount"))));
 	pstmt.setString(2,request.getParameter("Item_Num"));
 	
 	try{

@@ -20,12 +20,13 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	String user_id="";
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
 		response.sendRedirect("UnloginMain.jsp");
+
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -42,7 +43,7 @@
 		ex.printStackTrace();
 	}%>
 	<h4>Item Ordering</h4>
-	<button type="button" onclick="location.href='AdminOrder.jsp'">To Ordering Menu</button>
+	<button type="button" onclick="location.href='AdminOrder.html'">To Ordering Menu</button>
 	<h4>Out of Stock Items</h4>
 	<%
 	
@@ -54,12 +55,7 @@
 	rs = pstmt.executeQuery();
 	//System.out.println(rs.getString(1));
 	out.println("<table border=\"1\">");
-	ResultSetMetaData rsmd = rs.getMetaData();
-	int cnt = rsmd.getColumnCount();
 	
-	for(int i=1;i<=cnt;i++){
-		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
-	}
 	while(rs.next()){
 		out.println("<tr>");
 		out.println("<td>"+rs.getString(1)+"</td>");
@@ -75,7 +71,7 @@
 	LocalDateTime now = LocalDateTime.now();
 	//now.getMonthValue(), now.getDayOfMonth(),now.getYear()
 	
-	query = "SELECT Price FROM BUYING";
+	query = "SELECT Item_Num FROM BUYING";
 	int sum = 0;
 	
 	System.out.println(query);
@@ -90,7 +86,7 @@
 	out.println("</h5>");
 	%>
 	<h5>This Month's Revenue</h5>
-	<% 
+	<% /*
 	query = "SELECT Price FROM BUYING WHERE YEAR(Buying_Date)=" + now.getYear()
 	+  " AND MONTH(Buying_Date)=" + now.getMonthValue();
 	sum = 0;
@@ -105,9 +101,9 @@
 	out.println("<h5>");
 	out.println(sum);
 	out.println("</h5>");
-	%>
+	*/%>
 	<h5>Today's Revenue</h5>
-	<% 
+	<% /*
 	query = "SELECT Price FROM BUYING WHERE YEAR(Buying_Date)=" + now.getYear()
 	+  " AND MONTH(Buying_Date)=" + now.getMonthValue() 
 	+ " AND DAY(Buying_Date)=" + now.getDayOfMonth();
@@ -122,7 +118,7 @@
 	}
 	out.println("<h5>");
 	out.println(sum);
-	out.println("</h5>");
+	out.println("</h5>");*/
 	%>
 </body>
 </html>

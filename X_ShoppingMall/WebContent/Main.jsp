@@ -90,8 +90,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName,id,pw);

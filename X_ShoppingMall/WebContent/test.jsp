@@ -17,8 +17,8 @@
 	String strSID = "xe";
 	String portNum = "1521";
 	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
-	String user = "knu";
-	String pass = "comp322";
+	String id = "root";
+	String pw = "password";
 	//Complete your code.
 	Connection conn;
 	PreparedStatement pstmt;
