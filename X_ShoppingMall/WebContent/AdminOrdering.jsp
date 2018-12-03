@@ -14,8 +14,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "root";
-	String pw = "password";
+	String id = "knu";
+	String pw = "comp322";
 	String user_id="";
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
@@ -38,12 +38,20 @@
 	}
 	
 	//error detecting
+	if(request.getParameter("Ammount") == ""){
+		out.println("<script>");
+		out.println("alert('No Ammount Value. Unacceptable Condition.')");
+		out.println("location.href='AdminMain.jsp'");
+		out.println("</script>");
+	}
 	if(Integer.parseInt(request.getParameter("Ammount")) < 0){
 		out.println("<script>");
 		out.println("alert('Ammount is negative number. Unacceptable condition.')");
 		out.println("location.href='AdminMain.jsp'");
 		out.println("</script>");
 	}
+	
+	
 	
 	String query = "";
 	int current_Stock = 0;

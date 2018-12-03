@@ -58,9 +58,9 @@
 						});
 				$('#vegetable').hover(
 						function() {
-							$(this).append($("<span>  boosting/spinach  </span>"));
-							$(this).append($("<span>  bean/pean_sprouts  </span>"));
-							$(this).append($("<span>  lettuce/cracker/ssam </span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=boosting/spinach'>  boosting/spinach  </a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=bean/pean_sprouts'>  bean/pean_sprouts  </a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=lettuce/cracker/ssam'>  lettuce/cracker/ssam </a></span>"));
 						}, 
 						function() {
 							$(this).find("span:last").remove();
@@ -69,9 +69,9 @@
 						});
 				$('#rice').hover(
 						function() {
-							$(this).append($("<span>  bean/bori  </span>"));
-							$(this).append($("<span>  glutin_rice/rice/black  </span>"));
-							$(this).append($("<span>  millet</span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=bean/bori'>  bean/bori  </a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=glutin_rice/rice/black'>  glutin_rice/rice/black  </a></span>"));
+							$(this).append($("<span><a href='category.jsp?cate-name=millet'>  millet </a></span>"));
 						}, 
 						function() {
 							$(this).find("span:last").remove();
@@ -90,8 +90,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "root";
-	String pw = "password";
+	String id = "knu";
+	String pw = "comp322";
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName,id,pw);

@@ -20,8 +20,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "root";
-	String pw = "password";
+	String id = "knu";
+	String pw = "comp322";
 	String user_id="";
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
@@ -71,7 +71,8 @@
 	LocalDateTime now = LocalDateTime.now();
 	//now.getMonthValue(), now.getDayOfMonth(),now.getYear()
 	
-	query = "SELECT Item_Num FROM BUYING";
+	query = "SELECT ITEM.Price, BUYING_AMMOUNT.AMMOUNT  FROM BUYING, BUYING_AMMOUNT, ITEM " 
+			+ " WHERE BUYING.Buying_Num=BUYING_AMMOUNT.Buying_Num AND BUYING.Item_Num=ITEM.Item_Num";
 	int sum = 0;
 	
 	System.out.println(query);
@@ -86,9 +87,29 @@
 	out.println("</h5>");
 	%>
 	<h5>This Month's Revenue</h5>
-	<% /*
-	query = "SELECT Price FROM BUYING WHERE YEAR(Buying_Date)=" + now.getYear()
-	+  " AND MONTH(Buying_Date)=" + now.getMonthValue();
+	<% 
+	query = "SELECT ITEM.Price, BUYING_AMMOUNT.AMMOUNT  FROM BUYING, BUYING_AMMOUNT, ITEM " 
+	+ " WHERE BUYING.Buying_Num=BUYING_AMMOUNT.Buying_Num AND BUYING.Item_Num=ITEM.Item_Num AND "
+	+ "YEAR(Buying_Date)=" + now.getYear() +  " AND MONTH(Buying_Date)=" +now.getMonthValue();
+	sum = 0;
+	
+	System.out.println(query);
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	//System.out.println(rs.getString(1));
+	while(rs.next()){
+		sum += Integer.parseInt(rs.getString(1)) * Integer.parseInt(rs.getString(2));
+	}
+	out.println("<h5>");
+	out.println(sum);
+	out.println("</h5>");
+	%>
+	<h5>Today's Revenue</h5>
+	<% 
+	query = "SELECT ITEM.Price, BUYING_AMMOUNT.AMMOUNT  FROM BUYING, BUYING_AMMOUNT, ITEM " 
+			+ " WHERE BUYING.Buying_Num=BUYING_AMMOUNT.Buying_Num AND BUYING.Item_Num=ITEM.Item_Num AND "
+			+ "YEAR(Buying_Date)=" + now.getYear() +  " AND MONTH(Buying_Date)=" +now.getMonthValue()
+			+ " AND DAY(Buying_Date)=" + now.getDayOfMonth();
 	sum = 0;
 	
 	System.out.println(query);
@@ -101,24 +122,6 @@
 	out.println("<h5>");
 	out.println(sum);
 	out.println("</h5>");
-	*/%>
-	<h5>Today's Revenue</h5>
-	<% /*
-	query = "SELECT Price FROM BUYING WHERE YEAR(Buying_Date)=" + now.getYear()
-	+  " AND MONTH(Buying_Date)=" + now.getMonthValue() 
-	+ " AND DAY(Buying_Date)=" + now.getDayOfMonth();
-	sum = 0;
-	
-	System.out.println(query);
-	pstmt = conn.prepareStatement(query);
-	rs = pstmt.executeQuery();
-	//System.out.println(rs.getString(1));
-	while(rs.next()){
-		sum += Integer.parseInt(rs.getString(1));
-	}
-	out.println("<h5>");
-	out.println(sum);
-	out.println("</h5>");*/
 	%>
 </body>
 </html>

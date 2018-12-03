@@ -19,8 +19,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "root";
-	String pw = "password";
+	String id = "knu";
+	String pw = "comp322";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -56,9 +56,16 @@
 		out.println("</tr>");
 	}
 	out.println("</table>");
-
+	
+	
 	%>
-	<button type="button" onclick="location.href='changeinf1.jsp'">Change Information</button>
-	<button type="button" onclick="location.href='changepwd.html'">Change Password</button>
+<form action="InTheCart.jsp">
+<input type="hidden" name="Item_Name" value=<%=request.getParameter("Item_Name") %>>
+  <label for="ammount"><b>Ammount</b></label>
+  <input type="number" placeholder="Enter Ammount" name='Ammount'>
+  <button type="submit">Order</button>
+ </form>
+	
+	<button type="button" onclick="location.href='Main.jsp'">Back to Main</button>
 </body>
 </html>
