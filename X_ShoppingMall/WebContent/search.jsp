@@ -4,15 +4,16 @@
 <%@ page language="java" import="java.text.*, java.sql.*, java.io.*" %>
 <html>
 <head>
+ 	<link type="text/css" href="style2.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>UNMI : Account</title>
+<title>search</title>
 </head>
 <body>
-<div id="top-bar" class="container">
-			<div class="row">
-			<a href="Main.jsp"><img src="/logo.png" alt=""></a>
-			</div>
-			</div>
+	<div id="top-bar" class="container">
+		<div class="row">
+			<a href="Main.jsp?uname=<%=request.getParameter("uname")%>"><img src="/logo.png" alt=""></a>
+		</div>
+	</div>
 <%
 	String url;
 	Connection conn=null;
@@ -25,7 +26,7 @@
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
 		response.sendRedirect("UnloginMain.jsp");
-	
+
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -39,31 +40,23 @@
 	}catch(SQLException se){
 		se.printStackTrace();
 	}catch(Exception ex){
-		ex.printStackTrace();
+		ex.printStackTrace();	
 	}
+	System.out.println(request.getParameter("search"));
 	
-	String query = "SELECT * FROM CUSTOMER WHERE" 
-			+ " ID='" + user_id + "'";
-	System.out.println(query);
-	pstmt = conn.prepareStatement(query);
+	String sql= "select Item_Name,Item_Num from ITEM where ITEM_Name like '%"+request.getParameter("search")+"%'";
+	pstmt=conn.prepareStatement(sql);
 	rs = pstmt.executeQuery();
-	rs.next();
-	out.println("<table border=\"1\">");
-	ResultSetMetaData rsmd = rs.getMetaData();
-	int cnt = rsmd.getColumnCount();
-	out.println("<th>" + "Attribute" + "</th>");
-	out.println("<th>" + "Value" + "</th>");
-	for(int i=1; i<= cnt; i++){
-		out.println("<tr>");
-		out.println("<td>" + rsmd.getColumnName(i) + "</td>");
-		out.println("<td>" + rs.getString(i) + "</td>");
 	
+	out.println("<table border=\"1\">");
+	out.println("<th>" + "Item_name" + "</th>");
+	while(rs.next()){
+		out.println("<tr>");
+		out.println("<td><a href='ItemInfo.jsp?Item_Num=" + rs.getString(2)+ "'>" + rs.getString(1) + "</a></td>");
 		out.println("</tr>");
 	}
 	out.println("</table>");
-	
+
 	%>
-	<button type="button" onclick="location.href='changeinf1.jsp'">Change Information</button>
-	<button type="button" onclick="location.href='changepwd1.jsp'">Change Password</button>
 </body>
 </html>

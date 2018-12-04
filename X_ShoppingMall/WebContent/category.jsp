@@ -22,8 +22,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	
 	String user_id ="";
 	user_id=(String)session.getAttribute("id");
@@ -44,7 +44,7 @@
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
-	String query = "SELECT i.Item_Name FROM BELONG b, CATEGORY c, ITEM i WHERE b.Category_Num=c.Category_Num and b.Item_Num=i.Item_Num and c.Category_Name='" 
+	String query = "SELECT i.Item_Name,i.Item_Num FROM BELONG b, CATEGORY c, ITEM i WHERE b.Category_Num=c.Category_Num and b.Item_Num=i.Item_Num and c.Category_Name='" 
 			+ request.getParameter("cate-name") + "'";
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
@@ -54,11 +54,11 @@
 	int cnt = rsmd.getColumnCount();
 	out.println("<th>" + "Item_name" + "</th>");
 	while(rs.next()){
-	for(int i=1; i<= cnt; i++){
+	
 		out.println("<tr>");
-		out.println("<td><a href='ItemInfo.jsp?Item_Name=" + rs.getString(i)+ "'>" + rs.getString(i) + "</a></td>");
+		out.println("<td><a href='ItemInfo.jsp?Item_Num=" + rs.getString(2)+ "'>" + rs.getString(1) + "</a></td>");
 		out.println("</tr>");
-	}
+	
 	}
 	out.println("</table>");
 	%>

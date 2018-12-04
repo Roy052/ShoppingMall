@@ -9,6 +9,7 @@
 <title>UNMI : CART</title>
 </head>
 <body>
+<a href="logout.jsp">Logout</a>
 	<div id="top-bar" class="container">
 		<div class="row">
 			<a href="Main.jsp?uname=<%=request.getParameter("uname")%>"><img src="/logo.png" alt=""></a>
@@ -20,12 +21,14 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	String user_id="";
 	user_id= (String)session.getAttribute("id");
 	if(user_id==null||user_id.equals(""))
 		response.sendRedirect("UnloginMain.jsp");
+	else if(!user_id.equals("Admin"))
+		response.sendRedirect("Main.jsp");
 
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
@@ -44,6 +47,7 @@
 	}%>
 	<h4>Item Ordering</h4>
 	<button type="button" onclick="location.href='AdminOrder.html'">To Ordering Menu</button>
+	<button type="button" onclick="location.href='total_buying.jsp' ">Show purchase list</button>
 	<h4>Out of Stock Items</h4>
 	<%
 	
@@ -71,7 +75,6 @@
 	<% 
 	LocalDateTime now = LocalDateTime.now();
 	//now.getMonthValue(), now.getDayOfMonth(),now.getYear()
-	
 	query = "SELECT ITEM.Price, BUYING_AMMOUNT.AMMOUNT  FROM BUYING, BUYING_AMMOUNT, ITEM " 
 			+ " WHERE BUYING.Buying_Num=BUYING_AMMOUNT.Buying_Num AND BUYING.Item_Num=ITEM.Item_Num";
 	int sum = 0;
@@ -81,7 +84,7 @@
 	rs = pstmt.executeQuery();
 	//System.out.println(rs.getString(1));
 	while(rs.next()){
-		sum += Integer.parseInt(rs.getString(1));
+		sum += Integer.parseInt(rs.getString(1))*Integer.parseInt(rs.getString(2));
 	}
 	out.println("<h5>");
 	out.println(sum);
@@ -118,7 +121,7 @@
 	rs = pstmt.executeQuery();
 	//System.out.println(rs.getString(1));
 	while(rs.next()){
-		sum += Integer.parseInt(rs.getString(1));
+		sum += Integer.parseInt(rs.getString(1)) * Integer.parseInt(rs.getString(2));
 	}
 	out.println("<h5>");
 	out.println(sum);

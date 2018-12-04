@@ -14,8 +14,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -59,6 +59,32 @@
 		pstmt.setInt(7,0);
 	}
 	pstmt.setString(8,request.getParameter("job"));
+	
+	try{
+	
+	int res= pstmt.executeUpdate();
+	System.out.println(res+" row inserted.");
+	}catch(SQLException ex2) {
+		System.err.println("sql error = " + ex2.getMessage());
+		System.exit(1);
+	}
+	
+	int maxnum = 0;
+	query = "SELECT MAX(Cart_Num) FROM CART";
+	pstmt=conn.prepareStatement(query);
+	ResultSet res1=pstmt.executeQuery();
+	if(res1.next()){
+		maxnum = Integer.parseInt(res1.getString(1));
+		maxnum++;
+	}
+	else maxnum = 1;
+	
+	sql = "INSERT INTO CART VALUES(?,?,?,?)";
+	pstmt=conn.prepareStatement(sql);
+	pstmt.setString(1,request.getParameter("uname"));
+	pstmt.setInt(2,maxnum);
+	pstmt.setString(3,request.getParameter("address"));
+	pstmt.setString(4,"0");
 	
 	try{
 	

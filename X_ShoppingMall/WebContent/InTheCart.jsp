@@ -27,8 +27,8 @@
 	
 	int cartnum = 0;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	int item_num = 0;
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
@@ -73,15 +73,16 @@
 	}
 	
 	
-	query = "SELECT Item_Num FROM ITEM WHERE ITEM.Item_Name='" + request.getParameter("Item_Name") + "'";
+	/*query = "SELECT Item_Num FROM ITEM WHERE ITEM.Item_Name='" + request.getParameter("Item_Name") + "'";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
 	if(rs.next()){
 		System.out.println(query);
 		System.out.println(rs.getString(1));
 		item_num = Integer.parseInt(rs.getString(1));
-	}
-	System.out.println("Item Num : " + item_num + "Item Name : " + request.getParameter("Item_Name"));
+	}*/
+	item_num=Integer.parseInt(request.getParameter("Item_Num"));
+	//System.out.println("Item Num : " + item_num + "Item Name : " + request.getParameter("Item_Name"));
 	query = "SELECT * FROM ADD_CART WHERE Customer_ID='" + user_id
 			+ "' AND Item_Num=" + Integer.toString(item_num);
 	pstmt = conn.prepareStatement(query);

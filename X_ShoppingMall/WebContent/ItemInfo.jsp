@@ -19,8 +19,8 @@
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	String dbName = "Team4_ShoppingMall";
-	String id = "knu";
-	String pw = "comp322";
+	String id = "root";
+	String pw = "password";
 	url = "jdbc:mysql://localhost/" + dbName;
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -38,7 +38,7 @@
 	}
 	
 	String query = "SELECT * FROM ITEM WHERE" 
-			+ " Item_Name='" + request.getParameter("Item_Name") + "'";
+			+ " Item_Num='" + request.getParameter("Item_Num") + "'";
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
@@ -60,7 +60,7 @@
 	
 	%>
 <form action="InTheCart.jsp">
-<input type="hidden" name="Item_Name" value=<%=request.getParameter("Item_Name") %>>
+<input type="hidden" name="Item_Num" value=<%=request.getParameter("Item_Num") %>>
   <label for="ammount"><b>Ammount</b></label>
   <input type="number" placeholder="Enter Ammount" name='Ammount'>
   <button type="submit">Order</button>

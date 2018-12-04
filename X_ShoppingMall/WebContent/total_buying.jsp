@@ -41,9 +41,13 @@
 	}catch(Exception ex){
 		ex.printStackTrace();
 	}
+	String query2="Select sum(Ammount*Price) from BUYING,BUYING_AMMOUNT,ITEM where BUYING_AMMOUNT.Buying_Num=BUYING.Buying_Num and ITEM.Item_Num=BUYING.Item_Num";
+	pstmt = conn.prepareStatement(query2);
+	rs = pstmt.executeQuery();
+	rs.next();
+	int summary = Integer.parseInt(rs.getString(1));
 	
-	String query = "SELECT * FROM CUSTOMER WHERE" 
-			+ " ID='" + user_id + "'";
+	String query = "SELECT i.Item_Num,i.Item_Name,i.Price,ba.Ammount,b.Buying_Date FROM ITEM i,BUYING b,BUYING_AMMOUNT ba WHERE i.Item_Num=b.Item_Num and ba.Buying_Num=b.Buying_Num order by b.Buying_Date";
 	System.out.println(query);
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
@@ -51,19 +55,27 @@
 	out.println("<table border=\"1\">");
 	ResultSetMetaData rsmd = rs.getMetaData();
 	int cnt = rsmd.getColumnCount();
-	out.println("<th>" + "Attribute" + "</th>");
-	out.println("<th>" + "Value" + "</th>");
-	for(int i=1; i<= cnt; i++){
+	for(int i=1;i<=4;i++){
+		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
+	}
+	out.println("<th>Total price</th>");
+	for(int i=5;i<=cnt;i++){
+		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
+	}
+	while(rs.next()){
 		out.println("<tr>");
-		out.println("<td>" + rsmd.getColumnName(i) + "</td>");
-		out.println("<td>" + rs.getString(i) + "</td>");
-	
+		out.println("<td>"+rs.getString(1)+"</td>");
+		out.println("<td>"+rs.getString(2)+"</td>");
+		out.println("<td>"+rs.getString(3)+"</td>");
+		out.println("<td>"+rs.getString(4)+"</td>");
+		out.println("<td>"+Integer.parseInt(rs.getString(4))*Integer.parseInt(rs.getString(3))+"</td>");
+		out.println("<td>"+rs.getString(5)+"</td>");
+
 		out.println("</tr>");
 	}
 	out.println("</table>");
 	
+	out.println("total Price :"+summary);
 	%>
-	<button type="button" onclick="location.href='changeinf1.jsp'">Change Information</button>
-	<button type="button" onclick="location.href='changepwd1.jsp'">Change Password</button>
 </body>
 </html>
