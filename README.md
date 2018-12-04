@@ -1,4 +1,6 @@
-# ShoppingMall
-11.18 Made a git repsitory and Cloning</br>
-11.24 jsp Error Handling....</br>
-11.26 oracle to mysql</br> 
+# ShoppingMall 
+OS : MacOS, Tool : Eclipse EE, DB : MySQL 8.0.13, Tomcat : apache-tomcat-8.5.34</br>
+1. Check Mysql Connect</br>
+2. Run Team4_ShoppingMall.sql in mysql</br>
+3. Check all of mysql id pw is correct</br>
+3. Run the X_ShoppingMall/WebContent/UnloginMain.jsp</br>
